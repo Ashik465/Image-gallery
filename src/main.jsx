@@ -1,17 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ImageGallery from './image-gallery/ImageGallery';
+import MainGallery from "./image-gallery/MainGallery";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ImageGallery />,
+    element: <MainGallery />,
   },
 ]);
-
-
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
