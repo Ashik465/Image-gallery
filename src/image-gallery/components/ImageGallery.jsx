@@ -10,20 +10,20 @@ const ImageGallery = ({ images, setImages }) => {
 
     setImages(items);
   };
- 
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="imageGallery">
+      <Droppable droppableId="imageGallery" direction="horizontal">
         {(provided) => (
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+            className="grid grid-cols-1 gap-4 p-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
           >
             {images.map((image, index) => (
               <Draggable
-                key={image.id.toString()} // Ensure image ID is a string
-                draggableId={image.id.toString()} // Ensure image ID is a string
+                key={image.id.toString()} 
+                draggableId={image.id.toString()} 
                 index={index}
               >
                 {(provided) => (
@@ -31,7 +31,7 @@ const ImageGallery = ({ images, setImages }) => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    className=""
+                    className="overflow-hidden border border-gray-300 rounded-md first:center first:row-span-2 first:col-span-2"
                   >
                     <img src={image.url} alt={`Image ${image.id}`} />
                   </div>
@@ -47,5 +47,3 @@ const ImageGallery = ({ images, setImages }) => {
 };
 
 export default ImageGallery;
-
-
