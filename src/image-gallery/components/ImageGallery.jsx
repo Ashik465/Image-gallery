@@ -1,20 +1,21 @@
 import { useState } from "react";
-import { FaCheckSquare } from "react-icons/fa";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { AiOutlinePicture } from "react-icons/ai";
+import GalleryHeader from "./GalleryHeader";
 
 const ImageGallery = ({ images, setImages }) => {
   const [checkedImages, setCheckedImages] = useState([]);
-
+ 
+  //drag and drop reordering functionality
   const onDragEnd = (result) => {
     if (!result.destination) return;
-
     const items = Array.from(images);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-
     setImages(items);
   };
-
+ 
+  //checkbox functionality
   const handleCheckboxChange = (imageId) => {
     const isChecked = checkedImages.includes(imageId);
     if (isChecked) {
@@ -25,34 +26,13 @@ const ImageGallery = ({ images, setImages }) => {
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center px-10 py-5">
-        <div>
-          {checkedImages.length > 0 ? (
-            <div className="flex gap-2 items-center justify-center">
-              <FaCheckSquare className="h-7 w-7" fill="blue" />
-              <p className="text-2xl font-bold">
-                {checkedImages.length} File Selected
-              </p>
-            </div>
-          ) : (
-            <h1 className=" text-2xl font-bold">Gallery</h1>
-          )}
-        </div>
-        {checkedImages.length > 0 && (
-          <button
-            className="px-4 py-2 text-red-500 font-bold text-xl hover:underline"
-            onClick={() => {
-              setImages(
-                images.filter((image) => !checkedImages.includes(image.id))
-              );
-              setCheckedImages([]);
-            }}
-          >
-            Delete file
-          </button>
-        )}
-      </div>
+    <>
+      <GalleryHeader
+        images={images}
+        setImages={setImages}
+        checkedImages={checkedImages}
+        setCheckedImages={setCheckedImages}
+      ></GalleryHeader>
       <hr className="py-5" />
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="imageGallery" direction="horizontal">
@@ -79,7 +59,7 @@ const ImageGallery = ({ images, setImages }) => {
                       <div
                         className={`absolute inset-0 bg-black  ${
                           checkedImages.includes(image.id)
-                            ? "opacity-50 "
+                            ? "opacity-30 "
                             : "hover:opacity-50 opacity-0 "
                         }}`}
                       >
@@ -94,12 +74,17 @@ const ImageGallery = ({ images, setImages }) => {
                   )}
                 </Draggable>
               ))}
+
+              <div className="bg-gray-50 border-dashed border-gray-200 border-2 flex flex-col gap-4 items-center justify-center rounded-lg p-10">
+                <AiOutlinePicture className="h-7 w-7 text-gray-800" />
+                <p className="text-black text-lg font-medium">Add images</p>
+              </div>
               {provided.placeholder}
             </div>
           )}
         </Droppable>
       </DragDropContext>
-    </div>
+    </>
   );
 };
 
