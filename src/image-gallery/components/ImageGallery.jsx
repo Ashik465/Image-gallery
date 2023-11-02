@@ -40,7 +40,7 @@ const ImageGallery = ({ images, setImages }) => {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="grid grid-cols-1 gap-4 px-10 pb-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
+              className="grid grid-cols-2 gap-4 px-10 pb-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
             >
               {images.map((image, index) => (
                 <Draggable
@@ -53,7 +53,7 @@ const ImageGallery = ({ images, setImages }) => {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      className="relative  border-2  border-gray-300 rounded-md md:first:col-span-2 md:first:row-span-2 md:first:border-[3px]"
+                      className="relative  border-2  border-gray-300 rounded-md first:col-span-2 first:row-span-2 first:border-[3px]"
                     >
                       <img src={image.url} alt={`Image ${image.id}`} />
                       <div
@@ -75,9 +75,11 @@ const ImageGallery = ({ images, setImages }) => {
                 </Draggable>
               ))}
 
-              <div className="bg-gray-50 border-dashed border-gray-200 border-2 flex flex-col gap-4 items-center justify-center rounded-lg p-10">
+              <div className="bg-gray-50 border-dashed border-gray-200 border-2 flex flex-col gap-4 items-center justify-center rounded-lg p-10 ">
                 <AiOutlinePicture className="h-7 w-7 text-gray-800" />
-                <p className="text-black text-lg font-medium">Add images</p>
+                <p className="text-black text-lg font-medium text-center">
+                  Add Images
+                </p>
               </div>
               {provided.placeholder}
             </div>
