@@ -23,7 +23,7 @@ const GalleryHeader = (props) => {
       </div>
       {checkedImages.length > 0 && (
         <button
-          className="px-4 py-2 text-red-500 font-bold sm:text-xl text-sm hover:underline"
+          className=" text-red-500 font-bold sm:text-xl text-sm hover:underline"
           onClick={handleDelete}
         >
           Delete file
