@@ -14,7 +14,7 @@ const SortableImage = ({
   };
 
   const handleMouseDown = (e) => {
-    e.preventDefault(); // Prevents selection behavior
+    e.preventDefault(); 
     onCheckboxChange();
   };
 
@@ -42,7 +42,9 @@ const SortableImage = ({
       <img src={imageUrl} alt={`Image ${id}`} />
       <div
         className={`absolute inset-0 bg-black ${
-          checkedImages.includes(id)
+          isDragging
+            ? "opacity-0"
+            : isChecked
             ? "opacity-30"
             : "hover:opacity-50 opacity-0"
         }`}
