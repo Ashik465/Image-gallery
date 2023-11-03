@@ -37,7 +37,9 @@ const SortableImage = ({
       }}
       {...attributes}
       {...listeners}
-      className={`relative border-2 border-gray-300 rounded-md first:col-span-2 first:row-span-2 first:border-[3px]`}
+      className={`relative border-2 border-gray-300 rounded-md first:col-span-2 first:row-span-2 first:border-[3px] ${
+        isDragging ? "shadow-lg" : ""
+      }`}
     >
       <img src={imageUrl} alt={`Image ${id}`} />
       <div
