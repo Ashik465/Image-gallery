@@ -43,12 +43,12 @@ const SortableImage = ({
     >
       <img src={imageUrl} alt={`Image ${id}`} />
       <div
-        className={`absolute inset-0 bg-black ${
+        className={`absolute inset-0 ${
           isDragging
             ? "opacity-0"
             : isChecked
-            ? "opacity-30"
-            : "hover:opacity-50 opacity-0"
+            ? "opacity-1 bg-white/50"
+            : "hover:opacity-50 opacity-0 bg-black"
         }`}
       >
         <input
